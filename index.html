@@ -1,29 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE-edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./style.css">
-        <title>Etch-a-sketch</title>
-    </head>
 
-    <body>
-        <div class="page">
-            <div class="header">
-                <div id='pixel'class="button"></div>
-                <div id='eraser'class="button"></div>
-                <div id='color'class="button"></div>
-                <div id='rainbow'class="button"></div>
-                <div id='opacity'class="button"></div>
-            </div>
-        
-            <div class="grid-container">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Etch-a-sketch</title>
+</head>
 
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="main-button-containers">
+                <div id="pixel-container">
+                    <div id='pixel' class="button"></div>
+                    <input id="current-pxl" value="64x64" />
+                    <!--slider here with absolute position-->
+                    <div id="slider-container">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                            y="0px" viewBox="0 0 151 73" style="enable-background:new 0 0 151 73;" xml:space="preserve">
+                          
+                            <path class="st0" d="M132.56,50.5H22.44c-2.73,0-4.94-2.21-4.94-4.94V29.44c0-2.73,2.21-4.94,4.94-4.94h44.07
+                        	c1.91,0,3.75-0.76,5.1-2.11l5.89-5.89l6.71,6.12c1.33,1.21,3.06,1.88,4.86,1.88h43.49c2.73,0,4.94,2.21,4.94,4.94v16.12
+                        	C137.5,48.29,135.29,50.5,132.56,50.5z" />
+                        </svg>
+                        <input id='pxl-slider'type="range" min="1" max="100" step="1">
+                    </div>
+                </div>
+                <div id="eraser-container">
+                    <div id='eraser' class="button"></div>
+                </div>
+                <div id="color-container">
+                    <div id='color' class="button"></div>
+                </div>
+                <div id="rainbow-container">
+                    <div id='rainbow' class="button"></div>
+                </div>
+                <div id="opacity-container">
+                    <div id='opacity' class="button"></div>
+                </div>
             </div>
+
+            <div class="dropdown-area">
+            </div>
+
         </div>
 
-        <script src="./script.js"></script>
-    </body>
-</html>
+        <div class="grid-container">
 
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

@@ -10,23 +10,27 @@
 
 }
 
+
+/* HEADER */
 .header{
     display: block;
-    width: 310px;
+    width: auto;
     background-color: rgb(37, 37, 53);
-    border-radius: 20px;
-    margin: 15px auto;
-    padding: 4px;
+    border-radius: 40px;
+    padding: 10px 20px;
 }
 
-.header div {
-    display: inline-block;
+.header * {
+}
+
+.main-button-containers{
+    display: flex;
+    gap: 10px;
+}
+
+.main-button-containers * {
     height: 40px;
     width: 40px;
-    background-color: red;
-    border-radius: 50%;
-    margin: 0 5px;
-    border: 4px solid black;
 }
 
 .grid-container {
@@ -38,6 +42,8 @@
     flex-wrap: wrap;
 }
 
+
+/* main buttons */
 #opacity {
     background-color: darkgray;
 }
@@ -45,6 +51,79 @@
 #rainbow {
     background-image: linear-gradient(-45deg, red, orange, yellow, green, blue);
 }
+
+#eraser {
+    background-color: white;
+}
+
+#pixel {
+    background-color: red;
+}
+
+
+#opacity {
+    background-image: linear-gradient(black, white);
+    border-radius: 50%;
+    border: 2px solid rgb(132, 132, 132);
+}
+
+#color {
+    background-color: red;
+}
+
+/* indicators */
+.indicators-container * {
+    margin: 0 10px;
+}
+
+#slider-container{
+    height: auto;
+    width: 200px;
+    position: relative;
+    left: -90px;
+    top: -20px;
+}
+
+#current-pxl {
+    position: relative;
+    top: -5px;
+    display: block;
+    border-radius: 5px;;
+    border: 1.5px solid black;
+    color: black;
+    background-color: white;
+    font-size: 9px;
+    width: 25px;
+    height: 10px;
+    margin: 0 auto;
+}
+
+#pxl-slider{
+    display: block;
+    position: absolute;
+    width: auto;
+    top: 30px;
+    left: 37px;
+}
+
+
+
+
+/* SVG files */
+#Layer_1 {
+    height: auto;
+    width: 200px;
+}
+.st0 {
+    display: inline;
+    fill: rgb(43, 48, 63);
+    stroke: black;
+    stroke-width: 2px;;
+    width: 200px;
+    height: 200px;
+    
+}
+
 
 @media (min-width: 768px) {
     .page{
@@ -59,3 +138,4 @@
         display: inline-block;
     }
 }
+
