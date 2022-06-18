@@ -2,6 +2,10 @@
     margin:0;
 }
 
+body{
+    background-color: rgb(46, 50, 59);
+}
+
 .page {
     width: 480px;
     padding: 0 40px;
@@ -34,10 +38,11 @@
 }
 
 .grid-container {
+    background-color: rgb(109, 111, 114);
     width: auto;
     height: 400px; 
     box-sizing: border-box;
-    box-shadow: 3px 3px 10px rgb(37, 37, 53);
+    box-shadow: 3px 3px 10px rgb(90, 123, 138);
     display: flex;
     flex-wrap: wrap;
 }
@@ -82,6 +87,7 @@
     position: relative;
     left: -90px;
     top: -20px;
+    transition: 1s;
 }
 
 #current-pxl {
@@ -117,8 +123,8 @@
 .st0 {
     display: inline;
     fill: rgb(43, 48, 63);
-    stroke: black;
-    stroke-width: 2px;;
+    stroke: rgb(75, 105, 118);
+    stroke-width: 1.5px;;
     width: 200px;
     height: 200px;
     
@@ -139,3 +145,21 @@
     }
 }
 
+/* input range styling test */
+input[type='range']
+{
+    -webkit-appearance: none;
+    cursor: pointer;
+    appearance: none;
+    background: transparent;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+    background: rgb(0, 238, 255);
+    height: 5px;
+    border-radius: 90px;
+}
+
+input[type='range']::-webkit-slider-thumb {
+    margin-top: -5px;
+}
