@@ -1,9 +1,17 @@
+:root {
+    --main-color: rgb(27, 28, 28);
+    --secondary-color: rgb(109, 82, 27);
+    --highlight-border: rgb(75, 105, 118);
+    --highlight-strong: rgb(0, 238, 255);
+    --dark-button-fill: rgb(43, 48, 63);
+}
+
 * {
     margin:0;
 }
 
 body{
-    background-color: rgb(42, 39, 36);
+    background-color: var(--main-color);
 }
 
 .page {
@@ -19,9 +27,10 @@ body{
 .header{
     display: block;
     width: auto;
-    background-color: rgb(109, 82, 27);
+    background-color: var(--dark-button-fill);
     border-radius: 40px;
     padding: 10px 20px;
+    border: 1px solid var(--highlight-border)
 }
 
 .header * {
@@ -38,11 +47,11 @@ body{
 }
 
 .grid-container {
-    background-color: rgb(109, 111, 114);
+    background-color: rgb(255, 255, 255);
     width: auto;
     height: 400px; 
     box-sizing: border-box;
-    box-shadow: 3px 3px 10px rgb(90, 123, 138);
+    box-shadow: 3px 3px 10px rgb(22, 22, 22);
     display: flex;
     flex-wrap: wrap;
 }
@@ -74,22 +83,49 @@ body{
     background-color: red;
 }
 
+.new-canvas-container {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#new-canvas-button {
+    width: auto;
+    height: auto;
+    padding: 8px;
+    transition: 0.1s;
+    background-color: var(--dark-button-fill);
+    color: var(--highlight-strong);
+    border-radius: 7px;
+    border: 1.5px solid var(--highlight-border);
+}
+
+#new-canvas-button:hover {
+    background-color: var(--highlight-strong);
+    color: var(--dark-button-fill);
+    border: 1.5px solid var(--highlight-border)
+}
+
+#new-canvas-button:active {
+    transform: scale(0.95);
+}
+
 /* indicators */
 .indicators-container * {
     margin: 0 10px;
 }
 
-#slider-container{
+#slider-container, #slider-container-opc {
     display: none;
     height: auto;
     width: 200px;
     position: relative;
-    left: -90px;
-    top: -20px;
-    transition: 1s;
+    left: -86px;
+    top: -50px;
 }
 
-#current-pxl {
+#current-pxl, #opacity-text  {
     position: relative;
     top: -5px;
     display: block;
@@ -121,8 +157,8 @@ body{
 }
 .st0 {
     display: inline;
-    fill: rgb(43, 48, 63);
-    stroke: rgb(75, 105, 118);
+    fill: var(--dark-button-fill);
+    stroke: var(--highlight-border);
     stroke-width: 1.5px;;
     width: 200px;
     height: 200px;
@@ -154,7 +190,7 @@ input[type='range']
 }
 
 input[type='range']::-webkit-slider-runnable-track {
-    background: rgb(0, 238, 255);
+    background: var(--highlight-strong);
     height: 5px;
     border-radius: 90px;
 }

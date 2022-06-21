@@ -5,9 +5,11 @@ const sliderContainer = document.getElementById('slider-container');
 const pixelButton = document.querySelector('#pixel');
 const pixelSlider = document.querySelector('#pxl-slider');
 const textPxl = document.querySelector('#current-pxl');
+const opcButton = document.querySelector('#opacity');
+const sliderOpcContainer = document.getElementById('slider-container-opc');
 let currentPxl = 64;
 
-generateGrids(currentPxl);
+//generateGrids(currentPxl);
 
 
 //generate grids and also will delete pre-exising grids if there is any
@@ -22,11 +24,12 @@ function generateGrids(count){
 
     updateGridsSize(grids);
 
-    grids.forEach(
+    /*grids.forEach(
         (x) => {
             x.addEventListener('mouseover', paint)
         }
     )
+    */
 };
 
 
@@ -56,6 +59,7 @@ function paint(event){
 
 //initializing event listeners
 
+opcButton.addEventListener('click', ()=>{sliderOpcContainer.style.display == 'none' ? sliderOpcContainer.style.display = 'block' : sliderOpcContainer.style.display = 'none'})
 
 pixelButton.addEventListener('click',()=>{sliderContainer.style.display == 'none' ? 
     sliderContainer.style.display = 'block' : sliderContainer.style.display = 'none'; 
@@ -132,6 +136,10 @@ function changePxl(event, sliderInput) {
     function updatePxlText(pxl){
         textPxl.value = `${pxl}x${pxl}`;
     }
+}
+
+function changeOpacity(value){
+    
 }
 
 document.getElementById('pxl-form').addEventListener('submit',(event)=>{
