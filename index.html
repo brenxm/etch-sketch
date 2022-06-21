@@ -15,8 +15,9 @@
             <div class="main-button-containers">
                 <div id="pixel-container">
                     <div id='pixel' class="button"></div>
-                    <input id="current-pxl" value="64x64" />
-                    <!--slider here with absolute position-->
+                    <form id="pxl-form">
+                        <input onclick ='this.select()' type='text' id="current-pxl" value="64x64">
+                    </form>
                     <div id="slider-container">
                         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
                             y="0px" viewBox="0 0 151 73" style="enable-background:new 0 0 151 73;" xml:space="preserve">

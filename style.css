@@ -3,7 +3,7 @@
 }
 
 body{
-    background-color: rgb(46, 50, 59);
+    background-color: rgb(42, 39, 36);
 }
 
 .page {
@@ -19,7 +19,7 @@ body{
 .header{
     display: block;
     width: auto;
-    background-color: rgb(37, 37, 53);
+    background-color: rgb(109, 82, 27);
     border-radius: 40px;
     padding: 10px 20px;
 }
@@ -49,12 +49,10 @@ body{
 
 
 /* main buttons */
-#opacity {
-    background-color: darkgray;
-}
 
 #rainbow {
     background-image: linear-gradient(-45deg, red, orange, yellow, green, blue);
+    border-radius: 50%;
 }
 
 #eraser {
@@ -67,7 +65,7 @@ body{
 
 
 #opacity {
-    background-image: linear-gradient(black, white);
+    background-image: linear-gradient(-45deg, rgb(48, 48, 48) 50%, rgb(174, 174, 174) 50%);
     border-radius: 50%;
     border: 2px solid rgb(132, 132, 132);
 }
@@ -82,6 +80,7 @@ body{
 }
 
 #slider-container{
+    display: none;
     height: auto;
     width: 200px;
     position: relative;
