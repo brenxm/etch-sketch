@@ -1,4 +1,5 @@
 :root {
+    font-size: 1px;
     --main-color: rgb(27, 28, 28);
     --secondary-color: rgb(109, 82, 27);
     --highlight-border: rgb(75, 105, 118);
@@ -30,7 +31,8 @@ body{
     background-color: var(--dark-button-fill);
     border-radius: 40px;
     padding: 10px 20px;
-    border: 1px solid var(--highlight-border)
+    border: 1px solid var(--highlight-border);
+    margin: 5rem 0;
 }
 
 .header * {
@@ -44,6 +46,7 @@ body{
 .main-button-containers * {
     height: 40px;
     width: 40px;
+    box-sizing: border-box;
 }
 
 .grid-container {
@@ -62,25 +65,26 @@ body{
 #rainbow {
     background-image: linear-gradient(-45deg, red, orange, yellow, green, blue);
     border-radius: 50%;
+    border: 2px solid var(--highlight-border)
 }
 
 #eraser {
-    background-color: white;
 }
 
 #pixel {
-    background-color: red;
 }
 
 
 #opacity {
     background-image: linear-gradient(-45deg, rgb(48, 48, 48) 50%, rgb(174, 174, 174) 50%);
     border-radius: 50%;
-    border: 2px solid rgb(132, 132, 132);
+    border: 2px solid var(--highlight-border);
 }
 
 #color {
     background-color: red;
+    border-radius: 50%;
+    border: 2px solid var(--highlight-border);
 }
 
 .new-canvas-container {
@@ -125,37 +129,47 @@ body{
     top: -50px;
 }
 
+#slider-container-opc {
+    top: -23rem;
+}
+
 #current-pxl, #opacity-text  {
     position: relative;
     top: -5px;
     display: block;
-    border-radius: 5px;;
-    border: 1.5px solid black;
-    color: black;
-    background-color: white;
+    border-radius: 5px;
+    background-color: var(--dark-button-fill);
+    border: 1.5px solid var(--highlight-border);
+    color: var(--highlight-strong);
     font-size: 9px;
-    width: 25px;
-    height: 10px;
+    width: 41rem;
+    height: 13rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+
+#eraser-indicator, #color-indicator, #rainbow-indicator {
+    height: 8rem;
+    width: 8rem;
+    background-color: var(--highlight-strong);
+    border-radius: 50%;
     margin: 0 auto;
 }
-
-#pxl-slider{
-    display: block;
-    position: absolute;
-    width: auto;
-    top: 30px;
-    left: 37px;
-}
-
 
 
 
 /* SVG files */
-#Layer_1 {
+#Layer_1, #Layer_2 {
     height: auto;
     width: 200px;
 }
-.st0 {
+
+#slider-container:hover {
+    display: none;
+}
+.svg-pxl-slider, .svg-opc-slider {
     display: inline;
     fill: var(--dark-button-fill);
     stroke: var(--highlight-border);
@@ -164,6 +178,16 @@ body{
     height: 200px;
     
 }
+
+#pxl-slider,
+#opc-slider {
+    display: block;
+    position: absolute;
+    width: auto;
+    top: 30px;
+    left: 37px;
+}
+
 
 
 @media (min-width: 768px) {

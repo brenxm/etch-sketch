@@ -7,6 +7,8 @@ const pixelSlider = document.querySelector('#pxl-slider');
 const textPxl = document.querySelector('#current-pxl');
 const opcButton = document.querySelector('#opacity');
 const sliderOpcContainer = document.getElementById('slider-container-opc');
+const textOpc = document.querySelector('#opacity-text');
+const opcSlider = document.querySelector('#opc-slider');
 let currentPxl = 64;
 
 //generateGrids(currentPxl);
@@ -138,8 +140,21 @@ function changePxl(event, sliderInput) {
     }
 }
 
-function changeOpacity(value){
-    
+document.getElementById('opacity-form').addEventListener('submit',changeOpacity);
+opcSlider.addEventListener('change', ()=>{
+    textOpc.value = opcSlider.value;
+})
+
+function changeOpacity(event){
+    event.preventDefault();
+    if(textOpc.value > 0 && textOpc.value <= 1){
+        textOpc.blur();
+        opcSlider.value = textOpc.value;
+    }
+
+    else {
+        alert(`unaccepted value, enter only from 0.0 to 1.0`);
+    }
 }
 
 document.getElementById('pxl-form').addEventListener('submit',(event)=>{
