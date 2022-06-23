@@ -1,5 +1,6 @@
 :root {
     font-size: 1px;
+    --icon-size: 30rem;
     --main-color: rgb(27, 28, 28);
     --secondary-color: rgb(109, 82, 27);
     --highlight-border: rgb(75, 105, 118);
@@ -26,16 +27,14 @@ body{
 
 /* HEADER */
 .header{
-    display: block;
+    display: flex;
     width: auto;
     background-color: var(--dark-button-fill);
     border-radius: 40px;
     padding: 10px 20px;
     border: 1px solid var(--highlight-border);
     margin: 5rem 0;
-}
-
-.header * {
+    justify-content: center;
 }
 
 .main-button-containers{
@@ -44,8 +43,8 @@ body{
 }
 
 .main-button-containers * {
-    height: 40px;
-    width: 40px;
+    height: var(--icon-size);
+    width: var(--icon-size);
     box-sizing: border-box;
 }
 
@@ -67,13 +66,6 @@ body{
     border-radius: 50%;
     border: 2px solid var(--highlight-border)
 }
-
-#eraser {
-}
-
-#pixel {
-}
-
 
 #opacity {
     background-image: linear-gradient(-45deg, rgb(48, 48, 48) 50%, rgb(174, 174, 174) 50%);
@@ -126,7 +118,8 @@ body{
     width: 200px;
     position: relative;
     left: -86px;
-    top: -50px;
+    top: -40px;
+    pointer-events: none;
 }
 
 #slider-container-opc {
@@ -142,10 +135,10 @@ body{
     border: 1.5px solid var(--highlight-border);
     color: var(--highlight-strong);
     font-size: 9px;
-    width: 41rem;
+    width: 36rem;
     height: 13rem;
-    margin: 0 auto;
     text-align: center;
+    margin-left: -3rem;
 }
 
 
@@ -156,6 +149,7 @@ body{
     background-color: var(--highlight-strong);
     border-radius: 50%;
     margin: 0 auto;
+    display: none;
 }
 
 
@@ -175,8 +169,8 @@ body{
     stroke: var(--highlight-border);
     stroke-width: 1.5px;;
     width: 200px;
+    pointer-events: none;
     height: 200px;
-    
 }
 
 #pxl-slider,
@@ -184,8 +178,14 @@ body{
     display: block;
     position: absolute;
     width: auto;
-    top: 30px;
+    top: 35px;
     left: 37px;
+    z-index: 3;
+    pointer-events: visible;
+}
+
+.st0, .st1, .st2, #a, svg, svg * {
+    pointer-events: none;
 }
 
 
