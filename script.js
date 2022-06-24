@@ -18,8 +18,8 @@ let currentPxl = 64;
 generateGrids(currentPxl);
 eventListenersFunction();
 document.getElementById('color-indicator').style.display = 'block';
-const activeBrush = {r: 0, g: 0, b: 0, a: opcSlider.value};
-const colorBrush = {r: 0, g: 0, b: 0, a: 0.5};
+const activeBrush = { r: 0, g: 0, b: 0, a: opcSlider.value };
+const colorBrush = { r: 0, g: 0, b: 0, a: 0.5 };
 
 //generate grids and also will delete pre-exising grids if there is any
 function generateGrids(count) {
@@ -32,13 +32,27 @@ function generateGrids(count) {
 
     grids = document.querySelectorAll('#grid');
     updateGridsSize(grids);
+};
+
+function drawingMode(trueOrFalse){
+    if(trueOrFalse){
+        grids.forEach(
+            (x) => {
+                x.addEventListener('mouseover', paint)
+            }
+        )
+
+        return;
+    }
 
     grids.forEach(
         (x) => {
-            x.addEventListener('mouseover', paint)
+            x.removeEventListener('mouseover', paint)
         }
     )
-};
+
+
+}
 
 
 //update grid size
@@ -54,20 +68,13 @@ function updateGridsSize(nodeList) {
 //function to draw colors
 function paint(event) {
     const currentRGB = event.target.style.getPropertyValue('background-color');
-    
+
     const rgb = currentRGB.match(/rgb[(](\d+), (\d+), (\d+)[)]/);
-    
 
-    /*
-    event.target.setAttribute('style', `${event.target.getAttribute('style')} background-color: rgb(${(rgb[1] * opcSlider.value) + (r * opcSlider.value)}, ${(rgb[2] * opcSlider.value) + (g * opcSlider.value)}, ${(rgb[3] * opcSlider.value) + (b * opcSlider.value)});`);
-    */
-
-    event.target.setAttribute('style', `${event.target.getAttribute('style')} background-color: rgb(${(rgb[1] - (rgb[1] * activeBrush.a)) + (activeBrush.r * activeBrush.a)}, ${(rgb[2] - (rgb[2] * activeBrush.a)) + (activeBrush.g * activeBrush.a)}, ${(rgb[3] - (rgb[3] * activeBrush.a)) + (activeBrush.b * activeBrush.a) });`);
-
-  //  console.log(event.target.getAttribute('style'));
+    event.target.setAttribute('style', `${event.target.getAttribute('style')} background-color: rgb(${(rgb[1] - (rgb[1] * activeBrush.a)) + (activeBrush.r * activeBrush.a)}, ${(rgb[2] - (rgb[2] * activeBrush.a)) + (activeBrush.g * activeBrush.a)}, ${(rgb[3] - (rgb[3] * activeBrush.a)) + (activeBrush.b * activeBrush.a)});`);
 }
 
-function changeBrush(r,g,b,a){
+function changeBrush(r, g, b, a) {
     activeBrush.r = r;
     activeBrush.g = g;
     activeBrush.b = b;
@@ -77,13 +84,21 @@ function changeBrush(r,g,b,a){
 //initializing event listeners
 
 
-
-document.body.onmousedown = () => {
+document.body.onmousedown = (event) => {
     onMouseDown = true;
+    console.log(onMouseDown);
+    drawingMode(true);
+    if (event.target.getAttribute('id') != 'pxl-slider' && event.target.getAttribute('id') != 'opc-slider') {
+        sliderOpcContainer.style.display = 'none';
+        sliderContainer.style.display = 'none';
+        drawingMode(true);
+    }
 }
 
 document.body.onmouseup = () => {
     onMouseDown = false;
+    drawingMode(false);
+    console.log(onMouseDown);
 }
 
 
@@ -143,7 +158,7 @@ function changeOpacity(event) {
     if (textOpc.value > 0 && textOpc.value <= 1) {
         textOpc.blur();
         opcSlider.value = textOpc.value;
-        changeBrush(activeBrush.r,activeBrush.g,activeBrush.b, opcSlider.value);
+        changeBrush(activeBrush.r, activeBrush.g, activeBrush.b, opcSlider.value);
     }
 
     else {
@@ -159,6 +174,7 @@ function toggleButton(event) {
     document.getElementById('eraser-indicator').style.display = 'none';
     switch (event.target.getAttribute('id')) {
         case 'color':
+            drawingMode(false);
             document.getElementById('color-indicator').style.display = 'block'; activeBrush.r = colorBrush.r;
             activeBrush.g = colorBrush.g;
             activeBrush.b = colorBrush.b;
@@ -173,10 +189,10 @@ function toggleButton(event) {
             document.getElementById('eraser-indicator').style.display = 'block';
             activeBrush.r = 255;
             activeBrush.g = 255;
-            activeBrush.b = 255; 
+            activeBrush.b = 255;
             activeBrush.a = 1;
             opcSlider.value = 1;
-            textOpc.value = 1;           
+            textOpc.value = 1;
             return;
     }
 
@@ -184,25 +200,32 @@ function toggleButton(event) {
 
 function eventListenersFunction(event) {
     colorButton.addEventListener('click', toggleButton);
+    colorButton.addEventListener('input', (x) => {
+        console.log(x.target.value);
+        hexToRGB(x.target.value, colorBrush);
+    })
     rainbowButton.addEventListener('click', toggleButton);
     eraserButton.addEventListener('click', toggleButton);
     document.getElementById('pxl-form').addEventListener('submit', (event) => {
         changePxl(event, null);
-        
+
     });
     document.getElementById('opacity-form').addEventListener('submit', changeOpacity);
     opcSlider.addEventListener('change', () => {
         textOpc.value = opcSlider.value;
-        changeBrush(activeBrush.r,activeBrush.g,activeBrush.b,opcSlider.value);
+        changeBrush(activeBrush.r, activeBrush.g, activeBrush.b, opcSlider.value);
     })
 
-    pixelSlider.addEventListener('change', (event) => {
+    pixelSlider.addEventListener('input', (event) => {
         changePxl(null, event.target.value);
     })
 
-    opcButton.addEventListener('click', () => { sliderOpcContainer.style.display == 'none' ? sliderOpcContainer.style.display = 'block' : sliderOpcContainer.style.display = 'none' })
+    opcButton.addEventListener('click', () => { 
+        drawingMode(false);
+        sliderOpcContainer.style.display == 'none' ? sliderOpcContainer.style.display = 'block' : sliderOpcContainer.style.display = 'none' })
 
     pixelButton.addEventListener('click', () => {
+        drawingMode(false);
         sliderContainer.style.display == 'none' ?
             sliderContainer.style.display = 'block' : sliderContainer.style.display = 'none';
     })
@@ -215,13 +238,27 @@ window.matchMedia('(min-width: 768px)').addEventListener('change', () => {
 });
 
 Math.Clamp = (value, min, max) => {
-    if(value < min){
+    if (value < min) {
         return min;
     }
 
-    else if(value > max){
+    else if (value > max) {
         return max;
     }
 
     return value;
 }
+
+function hexToRGB(hex, colorBrush) {
+    const rgb = hex.match(/#([a-z0-9][a-z0-9])([a-z0-9][a-z0-9])([a-z0-9][a-z0-9])/);
+    const red = parseInt(rgb[1], 16);
+    const green = parseInt(rgb[2], 16);
+    const blue = parseInt(rgb[3], 16);
+    colorBrush.r = red;
+    colorBrush.g = green;
+    colorBrush.b = blue;
+    activeBrush.r = colorBrush.r;
+    activeBrush.g = colorBrush.g;
+    activeBrush.b = colorBrush.b;
+}
+

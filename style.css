@@ -9,10 +9,10 @@
 }
 
 * {
-    margin:0;
+    margin: 0;
 }
 
-body{
+body {
     background-color: var(--main-color);
 }
 
@@ -26,7 +26,7 @@ body{
 
 
 /* HEADER */
-.header{
+.header {
     display: flex;
     width: auto;
     background-color: var(--dark-button-fill);
@@ -37,7 +37,7 @@ body{
     justify-content: center;
 }
 
-.main-button-containers{
+.main-button-containers {
     display: flex;
     gap: 10px;
 }
@@ -51,7 +51,7 @@ body{
 .grid-container {
     background-color: rgb(255, 255, 255);
     width: auto;
-    height: 400px; 
+    height: 400px;
     box-sizing: border-box;
     box-shadow: 3px 3px 10px rgb(22, 22, 22);
     display: flex;
@@ -112,7 +112,8 @@ body{
     margin: 0 10px;
 }
 
-#slider-container, #slider-container-opc {
+#slider-container,
+#slider-container-opc {
     display: none;
     height: auto;
     width: 200px;
@@ -126,7 +127,8 @@ body{
     top: -23rem;
 }
 
-#current-pxl, #opacity-text  {
+#current-pxl,
+#opacity-text {
     position: relative;
     top: -5px;
     display: block;
@@ -143,7 +145,9 @@ body{
 
 
 
-#eraser-indicator, #color-indicator, #rainbow-indicator {
+#eraser-indicator,
+#color-indicator,
+#rainbow-indicator {
     height: 8rem;
     width: 8rem;
     background-color: var(--highlight-strong);
@@ -155,7 +159,8 @@ body{
 
 
 /* SVG files */
-#Layer_1, #Layer_2 {
+#Layer_1,
+#Layer_2 {
     height: auto;
     width: 200px;
 }
@@ -163,11 +168,14 @@ body{
 #slider-container:hover {
     display: none;
 }
-.svg-pxl-slider, .svg-opc-slider {
+
+.svg-pxl-slider,
+.svg-opc-slider {
     display: inline;
     fill: var(--dark-button-fill);
     stroke: var(--highlight-border);
-    stroke-width: 1.5px;;
+    stroke-width: 1.5px;
+    ;
     width: 200px;
     pointer-events: none;
     height: 200px;
@@ -184,29 +192,33 @@ body{
     pointer-events: visible;
 }
 
-.st0, .st1, .st2, #a, svg, svg * {
+.st0,
+.st1,
+.st2,
+#a,
+svg,
+svg * {
     pointer-events: none;
 }
 
 
 
 @media (min-width: 768px) {
-    .page{
+    .page {
         width: 700px;
     }
 
     .grid-container {
         height: 620px;
     }
-    
+
     .header {
         display: inline-block;
     }
 }
 
 /* input range styling test */
-input[type='range']
-{
+input[type='range'] {
     -webkit-appearance: none;
     cursor: pointer;
     appearance: none;
@@ -221,4 +233,32 @@ input[type='range']::-webkit-slider-runnable-track {
 
 input[type='range']::-webkit-slider-thumb {
     margin-top: -5px;
+}
+
+
+#color {
+    -webkit-appearance: none;
+    box-sizing: border-box;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    border-radius: 50%;
+    background-color: transparent;
+ }
+
+#color::-webkit-color-swatch {
+    box-sizing: border-box;
+    padding: auto;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    position: relative;
+    left: -1.35rem;
+    top: -0.5rem;
+}
+
+#color::-webkit-color-swatch-wrapper {
+    padding: 0;
+    border: none;
+    width: 25.5rem;
+    height: 25.5rem;
 }
