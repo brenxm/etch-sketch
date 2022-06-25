@@ -80,7 +80,6 @@ function paint(event) {
     }
 
     else {
-        console.log('being called');
         event.target.setAttribute('style', `${event.target.getAttribute('style')} background-color: ${rainbowBrush}`);
     }
 }
@@ -98,7 +97,6 @@ function changeBrush(r, g, b, a) {
 
 document.body.onmousedown = (event) => {
     onMouseDown = true;
-    console.log(onMouseDown);
     drawingMode(true);
     if (event.target.getAttribute('id') != 'pxl-slider' && event.target.getAttribute('id') != 'opc-slider') {
         sliderOpcContainer.style.display = 'none';
@@ -110,7 +108,6 @@ document.body.onmousedown = (event) => {
 document.body.onmouseup = () => {
     onMouseDown = false;
     drawingMode(false);
-    console.log(onMouseDown);
 }
 
 
@@ -129,7 +126,6 @@ function changePxl(event, sliderInput) {
 
             else {
                 alert('out of accepted value')
-                console.log(textPxl.value);
             }
         }
 
@@ -219,7 +215,6 @@ function toggleButton(event) {
 function eventListenersFunction(event) {
     colorButton.addEventListener('click', toggleButton);
     colorButton.addEventListener('input', (x) => {
-        console.log(x.target.value);
         hexToRGB(x.target.value, colorBrush);
     })
     rainbowButton.addEventListener('click', toggleButton);
@@ -291,7 +286,6 @@ function toggleRainbowBrush() {
         tick++;
         tick > 360 ? tick = 0 :
         rainbowBrush = `hsl(${tick}, 100%, 50%);`;
-        console.log(tick);
     }, 10)
 }
 
