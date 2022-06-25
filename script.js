@@ -13,6 +13,10 @@ const eraserButton = document.querySelector('#eraser');
 const colorButton = document.querySelector('#color');
 const rainbowButton = document.querySelector('#rainbow');
 let currentPxl = 64;
+let rainbowMode = false;
+let rainbowBrush;
+let intervalID;
+const newCanvasButton = document.querySelector('#new-canvas-button');
 
 //on start up
 generateGrids(currentPxl);
@@ -34,8 +38,8 @@ function generateGrids(count) {
     updateGridsSize(grids);
 };
 
-function drawingMode(trueOrFalse){
-    if(trueOrFalse){
+function drawingMode(trueOrFalse) {
+    if (trueOrFalse) {
         grids.forEach(
             (x) => {
                 x.addEventListener('mouseover', paint)
@@ -67,12 +71,20 @@ function updateGridsSize(nodeList) {
 
 //function to draw colors
 function paint(event) {
-    const currentRGB = event.target.style.getPropertyValue('background-color');
+    if (!rainbowMode) {
+        const currentRGB = event.target.style.getPropertyValue('background-color');
 
-    const rgb = currentRGB.match(/rgb[(](\d+), (\d+), (\d+)[)]/);
+        const rgb = currentRGB.match(/rgb[(](\d+), (\d+), (\d+)[)]/);
 
-    event.target.setAttribute('style', `${event.target.getAttribute('style')} background-color: rgb(${(rgb[1] - (rgb[1] * activeBrush.a)) + (activeBrush.r * activeBrush.a)}, ${(rgb[2] - (rgb[2] * activeBrush.a)) + (activeBrush.g * activeBrush.a)}, ${(rgb[3] - (rgb[3] * activeBrush.a)) + (activeBrush.b * activeBrush.a)});`);
+        event.target.setAttribute('style', `${event.target.getAttribute('style')} background-color: rgb(${(rgb[1] - (rgb[1] * activeBrush.a)) + (activeBrush.r * activeBrush.a)}, ${(rgb[2] - (rgb[2] * activeBrush.a)) + (activeBrush.g * activeBrush.a)}, ${(rgb[3] - (rgb[3] * activeBrush.a)) + (activeBrush.b * activeBrush.a)});`);
+    }
+
+    else {
+        console.log('being called');
+        event.target.setAttribute('style', `${event.target.getAttribute('style')} background-color: ${rainbowBrush}`);
+    }
 }
+
 
 function changeBrush(r, g, b, a) {
     activeBrush.r = r;
@@ -174,6 +186,8 @@ function toggleButton(event) {
     document.getElementById('eraser-indicator').style.display = 'none';
     switch (event.target.getAttribute('id')) {
         case 'color':
+            rainbowMode = false;
+            clearInterval(intervalID);
             drawingMode(false);
             document.getElementById('color-indicator').style.display = 'block'; activeBrush.r = colorBrush.r;
             activeBrush.g = colorBrush.g;
@@ -183,9 +197,13 @@ function toggleButton(event) {
             textOpc.value = colorBrush.a;
             return;
         case 'rainbow':
+            rainbowMode = true;
+            toggleRainbowBrush();
             document.getElementById('rainbow-indicator').style.display = 'block';
             return;
         case 'eraser':
+            rainbowMode = false;
+            clearInterval(intervalID);
             document.getElementById('eraser-indicator').style.display = 'block';
             activeBrush.r = 255;
             activeBrush.g = 255;
@@ -220,15 +238,20 @@ function eventListenersFunction(event) {
         changePxl(null, event.target.value);
     })
 
-    opcButton.addEventListener('click', () => { 
+    opcButton.addEventListener('click', () => {
         drawingMode(false);
-        sliderOpcContainer.style.display == 'none' ? sliderOpcContainer.style.display = 'block' : sliderOpcContainer.style.display = 'none' })
+        sliderOpcContainer.style.display == 'none' ? sliderOpcContainer.style.display = 'block' : sliderOpcContainer.style.display = 'none'
+    })
 
     pixelButton.addEventListener('click', () => {
         drawingMode(false);
         sliderContainer.style.display == 'none' ?
             sliderContainer.style.display = 'block' : sliderContainer.style.display = 'none';
     })
+
+    newCanvasButton.addEventListener('click',()=>{
+        updateGridsSize(grids);
+    });
 }
 
 
@@ -260,5 +283,15 @@ function hexToRGB(hex, colorBrush) {
     activeBrush.r = colorBrush.r;
     activeBrush.g = colorBrush.g;
     activeBrush.b = colorBrush.b;
+}
+
+function toggleRainbowBrush() {
+    let tick = 0;
+    intervalID = setInterval(() => {
+        tick++;
+        tick > 360 ? tick = 0 :
+        rainbowBrush = `hsl(${tick}, 100%, 50%);`;
+        console.log(tick);
+    }, 10)
 }
 
