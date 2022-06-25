@@ -12,7 +12,7 @@ const opcSlider = document.querySelector('#opc-slider');
 const eraserButton = document.querySelector('#eraser');
 const colorButton = document.querySelector('#color');
 const rainbowButton = document.querySelector('#rainbow');
-let currentPxl = 64;
+let currentPxl = 36;
 let rainbowMode = false;
 let rainbowBrush;
 let intervalID;
