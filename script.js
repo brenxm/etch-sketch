@@ -38,24 +38,12 @@ function generateGrids(count) {
     updateGridsSize(grids);
 };
 
-function drawingMode(trueOrFalse) {
-    if (trueOrFalse) {
-        grids.forEach(
-            (x) => {
-                x.addEventListener('mouseover', paint)
-            }
-        )
+function drawingMode(bool) {
+    if(bool) grids.forEach((grid) =>{grid.ondragstart = () => { return false;}}); //disable dragging of grids
+    if(bool) return grids.forEach((x)=>{x.addEventListener('mouseover',paint)});
+    grids.forEach((grid) => {grid.removeEventListener('mouseover', paint)});
 
-        return;
-    }
-
-    grids.forEach(
-        (x) => {
-            x.removeEventListener('mouseover', paint)
-        }
-    )
-
-
+   
 }
 
 
